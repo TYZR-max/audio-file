@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>毕业密语</title>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: system-ui;
+        }
+        .box {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+        }
+        audio {
+            width: 100%;
+            margin: 20px 0;
+        }
+        audio::-webkit-media-controls-enclosure {
+            overflow: hidden;
+        }
+        .disappear-text {
+            color: #e11d48;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🔐恭喜恭喜你呀 罗大媛</h2>
+        <audio id="secretAudio" controls controlsList="nodownload">
+            <source src="final.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const audio = document.getElementById('secretAudio');
+        let hasPlayed = false;
+
+        audio.onplay = function() {
+            if (!hasPlayed) {
+                hasPlayed = true;
+                audio.onended = function() {
+                    audio.style.display = 'none';
+                    const box = document.querySelector('.box');
+                    const msg = document.createElement('p');
+                    msg.className = 'disappear-text';
+                    msg.innerText = '✨  ✨';
+                    box.appendChild(msg);
+                };
+            }
+        };
+    </script>
+</body>
+</html>
